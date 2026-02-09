@@ -1,5 +1,5 @@
 use rand::RngExt;
-use std::io;
+use std::{cmp::Ordering, io};
 
 fn main() {
     let mut buf = String::new();
@@ -18,11 +18,22 @@ fn main() {
         };
         buf.clear();
 
-        if guess == secret_number {
-            println!("You guessed the secret number!");
-            break;
-        } else {
-            println!("You guess `{guess}` does not match the secret number!");
+        if guess == 42 {
+            println!("Aaaah, the answer to the universe, all and everything! Not the secret number though!");
+            continue;
         }
+
+        match secret_number.cmp(&guess) {
+            Ordering::Greater => {
+                println!("You guess `{guess}` is smaller then the secret number {secret_number}!")
+            }
+            Ordering::Less => {
+                println!("You guess `{guess}` is greater then the secret number {secret_number}!")
+            }
+            Ordering::Equal => {
+                println!("You guessed the secret number!");
+                break;
+            }
+        };
     }
 }
