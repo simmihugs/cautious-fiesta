@@ -1,22 +1,18 @@
 fn main() {
-    let mut x = 5;
-    let y = x;
-    println!("x = {x}");
-    println!("y = {y}");
+    let s = "hello".to_string();
 
-    x = 42;
+    takes_ownership(s);
+    //println!("{s}");
 
-    println!("x = {x}");
-    println!("y = {y}");
+    let x = 5;
+    makes_copy(x);
+    println!("{x}");
+}
 
-    let mut x = String::from("abc");
-    let y = x.clone();
+fn takes_ownership(s: String) {
+    println!("{s}");
+}
 
-    println!("x = {x}");
-    println!("y = {y}");
-
-    x = "cde".to_string();
-
-    println!("x = {x}");
-    println!("y = {y}");
+fn makes_copy(x: i32) {
+    println!("{x}");
 }
