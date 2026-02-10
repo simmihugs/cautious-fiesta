@@ -1,7 +1,9 @@
 fn main() {
-    let arr = [10, 11, 12, 13];
-
-    arr.iter().for_each(|a| {
+    (1..10).rev().for_each(|a| {
         println!("{a}");
+    });
+
+    (0..5).for_each(|x| {
+        println!("{x}");
     });
 }
