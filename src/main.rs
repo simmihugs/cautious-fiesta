@@ -1,20 +1,13 @@
 fn main() {
-    let mut arr: Vec<i32> = vec![];
-    for _ in 0..10 {
-        arr.push(rand::random_range(10..30));
-    }
+    let mut s = String::from("banane");
 
-    arr.iter().for_each(|x| {
-        println!("{x}");
-    });
-    println!("");
+    println!("{}", s);
 
-    arr = arr
-        .into_iter()
-        .filter(|x| *x > 10 && *x % 2 != 0)
-        .collect::<Vec<i32>>();
+    update_string(&mut s);
 
-    arr.iter().for_each(|x| {
-        println!("{x}");
-    });
+    println!("{}", s);
+}
+
+fn update_string(s: &mut String) {
+    s.push_str("neis");
 }
