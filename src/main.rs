@@ -1,12 +1,7 @@
 fn main() {
-    let mut count = 0;
+    let arr = [10, 11, 12, 13];
 
-    while count != 10 {
-        println!("{count}");
-        count += 1;
-
-        if count % 2 == 0 {
-            break;
-        }
+    for a in arr {
+        println!("{}", a);
     }
 }
