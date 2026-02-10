@@ -1,25 +1,23 @@
 fn main() {
-    let arr = [0, 1, 2, 3, 4, 5];
+    let mut count = 1;
+    'counting_up: loop {
+        let mut loop_var = 10;
 
-    println!("Value at which index?");
+        if count < 3 {
+            println!("loop: {count}");
+        }
 
-    let mut buf = String::new();
-    std::io::stdin().read_line(&mut buf).expect("test");
-    let index: usize = match buf.trim().parse() {
-        Ok(i) => i,
-        Err(_) => 42,
-    };
+        loop {
+            if count == 3 {
+                break 'counting_up;
+            }
 
-    if index < arr.len() {
-        println!("{}", arr[index])
-    } else {
-        let arr_str = arr
-            .iter()
-            .map(|x| x.to_string())
-            .fold(String::new(), |mut arr, init| {
-                arr = arr + " " + init.as_str();
-                arr
-            });
-        panic!("index {index} is out of bound for array {arr_str}");
+            if loop_var == 0 {
+                break;
+            }
+            println!("\tloop_2: {loop_var}");
+            loop_var -= 1;
+        }
+        count += 1;
     }
 }
