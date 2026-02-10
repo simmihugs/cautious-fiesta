@@ -1,10 +1,20 @@
 fn main() {
-    let s = "hello".to_string();
+    let mut arr: Vec<i32> = vec![];
+    for _ in 0..10 {
+        arr.push(rand::random_range(10..30));
+    }
 
-    does_not_take_ownership(&s);
-    println!("{s}");
-}
+    arr.iter().for_each(|x| {
+        println!("{x}");
+    });
+    println!("");
 
-fn does_not_take_ownership(s: &String) {
-    println!("{s}");
+    arr = arr
+        .into_iter()
+        .filter(|x| *x > 10 && *x % 2 != 0)
+        .collect::<Vec<i32>>();
+
+    arr.iter().for_each(|x| {
+        println!("{x}");
+    });
 }
