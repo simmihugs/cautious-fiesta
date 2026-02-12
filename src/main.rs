@@ -1,13 +1,7 @@
-fn some_stuff(s: &str) -> &str {
-    println!("wow: {s}");
-    &s[..]
-}
-
 fn main() {
-    // string literals
+    let a = [1, 2, 3, 4, 5];
 
-    let s = "hello, world!";
-    let _s = some_stuff(s);
-    let ss = String::from("asdfbasdf asdfsd");
-    let _ss = some_stuff(&ss);
+    let slice = &a[1..3];
+
+    assert_eq!(slice, &[2, 3]);
 }
