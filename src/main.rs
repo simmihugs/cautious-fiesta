@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct User {
     name: String,
     age: u32,
@@ -20,7 +20,7 @@ fn main() {
 
     let mut user2 = User {
         name: "blablabla".to_string(),
-        ..user
+        ..user.clone()
     };
     println!("{:?}", user2);
 
