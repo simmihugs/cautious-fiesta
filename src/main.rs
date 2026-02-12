@@ -7,4 +7,8 @@ fn main() {
 
     let r3 = &mut s;
     println!("{r3}");
+
+    let r4 = &s;
+    let r5 = &s;
+    println!("{r4} {r5}");
 }
