@@ -1,45 +1,13 @@
-fn main() {
-    // slices let you reference a contiguous sequence of elements in a collection.
-
-    let mut s = String::from("hello, world!");
-    let slice = get_slice(&s);
-    slice.chars().for_each(|x| {
-        println!("{}", x);
-    });
-
-    println!("");
-    let slice2 = first_word(&s);
-    s.clear();
-    slice2.chars().for_each(|x| {
-        println!("{}", x);
-    });
-
-    let mut vec: Vec<i32> = (0..10).collect();
-    vec.iter().enumerate().for_each(|(i, &x)| {
-        println!("{i}: {x}");
-    });
-    println!("");
-    vec.clear();
-    get_vec_slice(&vec).iter().enumerate().for_each(|(i, &x)| {
-        println!("{i}: {x}");
-    });
-}
-
-fn get_slice(s: &String) -> &str {
-    &s[4..]
-}
-
-fn first_word(s: &String) -> &str {
-    let byts = s.as_bytes();
-    for (i, &b) in byts.iter().enumerate() {
-        if b == b' ' {
-            return &s[..i];
-        }
-    }
-
+fn some_stuff(s: &str) -> &str {
+    println!("wow: {s}");
     &s[..]
 }
 
-fn get_vec_slice(v: &Vec<i32>) -> &[i32] {
-    &v[..3]
+fn main() {
+    // string literals
+
+    let s = "hello, world!";
+    let _s = some_stuff(s);
+    let ss = String::from("asdfbasdf asdfsd");
+    let _ss = some_stuff(&ss);
 }
