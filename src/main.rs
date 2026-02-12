@@ -1,18 +1,32 @@
-#[derive(Debug, Clone)]
-struct Element;
+struct Off;
+struct Running;
 
-trait Strategy {
-    fn fun(&self);
+struct Engine<Mode> {
+    mode: Mode,
+    power: f64,
 }
 
-impl Strategy for Element {
-    fn fun(&self) {
-        println!("{}", "hello, world!");
+fn start(engine: &mut Engine<Off>) -> Engine<Running> {
+    println!("{}", "Starting!!!");
+    Engine {
+        mode: Running,
+        power: engine.power,
+    }
+}
+
+fn stop(engine: &mut Engine<Running>) -> Engine<Off> {
+    println!("{}", "Stopping!!!");
+    Engine {
+        mode: Off,
+        power: engine.power,
     }
 }
 
 fn main() {
-    let element = Element;
-
-    element.fun();
+    let mut engine: Engine<Off> = Engine {
+        mode: Off,
+        power: 2.0,
+    };
+    let mut engine = start(&mut engine);
+    let _engine = stop(&mut engine);
 }
