@@ -1,14 +1,16 @@
 fn main() {
     // slices let you reference a contiguous sequence of elements in a collection.
 
-    let s = String::from("hello, world!");
+    let mut s = String::from("hello, world!");
     let slice = get_slice(&s);
     slice.chars().for_each(|x| {
         println!("{}", x);
     });
 
     println!("");
-    first_word(&s).chars().for_each(|x| {
+    let slice2 = first_word(&s);
+    s.clear();
+    slice2.chars().for_each(|x| {
         println!("{}", x);
     });
 
