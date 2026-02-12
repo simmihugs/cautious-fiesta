@@ -24,5 +24,6 @@ fn first_word(s: &String) -> &str {
             return &s[..i];
         }
     }
-    return &s[..];
+
+    &s[..]
 }
