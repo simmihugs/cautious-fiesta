@@ -11,6 +11,15 @@ fn main() {
     first_word(&s).chars().for_each(|x| {
         println!("{}", x);
     });
+
+    let vec: Vec<i32> = (0..10).collect();
+    vec.iter().enumerate().for_each(|(i, &x)| {
+        println!("{i}: {x}");
+    });
+    println!("");
+    get_vec_slice(&vec).iter().enumerate().for_each(|(i, &x)| {
+        println!("{i}: {x}");
+    });
 }
 
 fn get_slice(s: &String) -> &str {
@@ -26,4 +35,8 @@ fn first_word(s: &String) -> &str {
     }
 
     &s[..]
+}
+
+fn get_vec_slice(v: &Vec<i32>) -> &[i32] {
+    &v[..3]
 }
