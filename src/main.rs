@@ -15,4 +15,10 @@ fn main() {
     user.name = String::from("kkkkkk");
 
     println!("{:?}: age: {}", user, user.age);
+
+    let user2 = User {
+        name: "blablabla".to_string(),
+        ..user
+    };
+    println!("{:?}", user2);
 }
