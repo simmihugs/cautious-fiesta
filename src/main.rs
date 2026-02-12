@@ -1,91 +1,30 @@
-struct Off;
-struct Idle;
-struct Critical;
-
-struct NuclearPowerPlant<Mode> {
-    power_generated: f64,
-
-    #[allow(dead_code)]
-    mode: Mode,
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
 
-impl NuclearPowerPlant<Critical> {
-    fn melts(&self) {
-        println!("OH NOOOOOOOOO, WE ARE HAVING A MELTDOWN!");
-    }
-
-    fn save_us_jesus(&self) -> NuclearPowerPlant<Off> {
-        println!("Help us Jebus!");
-
-        let pp = NuclearPowerPlant {
-            power_generated: self.power_generated,
-
-            mode: Idle,
-        };
-
-        pp.shutdown()
-    }
-}
-
-impl NuclearPowerPlant<Off> {
-    fn new() -> Self {
-        println!("Powerplant build.");
-
-        NuclearPowerPlant {
-            power_generated: 0.0,
-            mode: Off,
+impl Rectangle {
+    fn new(width: u32, height: u32) -> Self {
+        Rectangle {
+            width: dbg!(width),
+            height: dbg!(height),
         }
     }
 
-    fn start(self) -> NuclearPowerPlant<Idle> {
-        println!("Powerplant started.");
-
-        NuclearPowerPlant {
-            power_generated: self.power_generated,
-            mode: Idle,
-        }
-    }
-}
-
-impl NuclearPowerPlant<Idle> {
-    fn produces_energy(&mut self) {
-        self.power_generated += 10.0;
-
-        println!("Dumdidum energy generated...");
-    }
-
-    fn shutdown(self) -> NuclearPowerPlant<Off> {
-        println!("Shuting the plant down...");
-
-        println!("This much energy produced: {}", self.power_generated);
-
-        NuclearPowerPlant {
-            power_generated: self.power_generated,
-
-            mode: Off,
-        }
-    }
-
-    fn meltdown(self) -> NuclearPowerPlant<Critical> {
-        println!("Oh my god!!");
-
-        NuclearPowerPlant {
-            power_generated: self.power_generated,
-
-            mode: Critical,
-        }
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
     }
 }
 
 fn main() {
-    let power_plant = NuclearPowerPlant::new();
-    let mut power_plant = power_plant.start();
+    let rect = Rectangle::new(16, 16);
+    dbg!(&rect);
 
-    for _ in 0..10 {
-        power_plant.produces_energy();
-    }
+    let rect2 = Rectangle::new(8, 15);
 
-    let power_plant = power_plant.meltdown();
-    power_plant.melts();
-    power_plant.save_us_jesus();
+    println!(
+        "does {rect2:?} completely fit into {rect:?}? -> {}",
+        rect.can_hold(&rect2)
+    );
 }
