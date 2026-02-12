@@ -1,9 +1,9 @@
-fn dangling() -> &String {
-    let mut s = String::from("hello");
+fn dangling() -> String {
+    let s = String::from("hello");
 
-    &s
+    s
 }
 
 fn main() {
-    let reference = dangling();
+    let _reference = dangling();
 }
