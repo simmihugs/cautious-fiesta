@@ -1,9 +1,13 @@
-fn dangling() -> String {
-    let s = String::from("hello");
+fn main() {
+    // slices let you reference a contiguous sequence of elements in a collection.
 
-    s
+    let s = String::from("hello, world!");
+    let slice = get_slice(&s);
+    slice.chars().for_each(|x| {
+        println!("{}", x);
+    })
 }
 
-fn main() {
-    let _reference = dangling();
+fn get_slice(s: &String) -> &str {
+    &s[0..4]
 }
