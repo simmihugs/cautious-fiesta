@@ -9,5 +9,5 @@ fn main() {
 }
 
 fn get_slice(s: &String) -> &str {
-    &s[..4]
+    &s[4..]
 }
