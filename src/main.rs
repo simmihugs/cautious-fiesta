@@ -1,7 +1,18 @@
+#[derive(Debug)]
+struct User {
+    name: String,
+    age: u32,
+}
+
 fn main() {
-    let a = [1, 2, 3, 4, 5];
+    let mut user: User = User {
+        name: "Peter Johnson".to_string(),
+        age: 42,
+    };
 
-    let slice = &a[1..3];
+    println!("{:?}", user);
 
-    assert_eq!(slice, &[2, 3]);
+    user.name = String::from("kkkkkk");
+
+    println!("{:?}: age: {}", user, user.age);
 }
