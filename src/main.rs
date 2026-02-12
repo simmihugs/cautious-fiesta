@@ -12,11 +12,12 @@ fn main() {
         println!("{}", x);
     });
 
-    let vec: Vec<i32> = (0..10).collect();
+    let mut vec: Vec<i32> = (0..10).collect();
     vec.iter().enumerate().for_each(|(i, &x)| {
         println!("{i}: {x}");
     });
     println!("");
+    vec.clear();
     get_vec_slice(&vec).iter().enumerate().for_each(|(i, &x)| {
         println!("{i}: {x}");
     });
