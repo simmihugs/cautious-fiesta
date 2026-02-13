@@ -36,3 +36,4 @@ Paths: A way of naming an item, such as a struct, function, or module
 cargo new kuchen --lib
 ```
 
+test
