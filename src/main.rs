@@ -1,13 +1,16 @@
-fn main() {
-    let config_max = Some(3u8);
-    if let Some(max) = config_max {
-        println!("The maximum is configured to be {max}");
-    }
+fn value_it(coin: &Option<i32>) -> Option<String> {
+    let Some(value) = coin else {
+        return None;
+    };
 
-    let config_max2: Option<i32> = None;
-    if let Some(max) = config_max2 {
-        println!("The maximum is configured to be {max}");
+    if *value > 42 {
+        Some(format!("value: {value} is high!"))
     } else {
-        println!("Not defined: {config_max2:?}");
+        Some(format!("value: {value} is not high!"))
     }
+}
+fn main() {
+    let coin = Some(32);
+    let value = value_it(&coin);
+    println!("{value:?}");
 }
