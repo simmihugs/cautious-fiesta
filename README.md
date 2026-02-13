@@ -36,4 +36,8 @@ Paths: A way of naming an item, such as a struct, function, or module
 cargo new kuchen --lib
 ```
 
-test
+### Pub
+
+In `struct`s every field needs to be set to public in order to be accessible from 
+outside of the module. In enums however, making the enum public makes the entire enums 
+parameters public as well.
