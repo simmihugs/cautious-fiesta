@@ -1,9 +1,10 @@
 fn main() {
-    let v = vec![1, 2, 3, 4, 5];
+    let mut v = vec![1, 2, 3, 4, 5];
 
-    // let does_not_exit = &v[100];
-    // println!("{does_not_exit}");
+    //let vv = v.get(0);
 
-    let does_not_exit2 = v.get(100);
-    println!("{does_not_exit2:?}");
+    v.push(6);
+
+    println!("first: {:?}", v.get(0));
+    println!("last: {:?}", v.last());
 }
