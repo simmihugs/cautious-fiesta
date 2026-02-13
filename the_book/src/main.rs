@@ -1,6 +1,6 @@
-use kuchen;
+use kuchen::blechkuchen as kuchen;
 
 fn main() {
-    kuchen::eat_at_restaurant();
-    kuchen::eat2();
+    kuchen::gelee();
+    kuchen::torte::sahne();
 }
