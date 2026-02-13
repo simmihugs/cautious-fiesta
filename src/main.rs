@@ -1,54 +1,18 @@
-#[derive(Debug)]
-struct Point {
-    x: f64,
-    y: f64,
-}
-
-#[derive(Debug)]
-enum Shape {
-    Circle {
-        center: Point,
-        radius: u32,
-    },
-    Square {
-        upper_left: Point,
-        width: u32,
-        height: u32,
-    },
-}
-
-use Shape::*;
-
-impl Shape {
-    fn center(&self) -> &Point {
-        match self {
-            Shape::Circle { center, .. } => center,
-            _ => panic!("I cant even: {self:?}"),
-        }
+fn add_to(value: i32, o: &mut Option<i32>) {
+    match o {
+        None => (),
+        Some(v) => *o = Some(*v + value),
     }
 }
 
 fn main() {
-    let circle = Shape::Circle {
-        center: Point { x: 0.0, y: 0.0 },
-        radius: 13,
-    };
+    let mut o = Some(32);
+    println!("value: {o:?}");
+    add_to(10, &mut o);
+    println!("value: {o:?}");
 
-    let square = Shape::Square {
-        upper_left: Point { x: 0.0, y: 0.0 },
-        width: 12,
-        height: 12,
-    };
-
-    println!("circle: {circle:?}");
-    println!("{}", circle.center().x);
-
-    // causes panic!
-    //println!("{}", square.center().x);
-
-    let circle2 = Circle {
-        center: Point { x: 0.0, y: 0.0 },
-        radius: 13,
-    };
-    println!("{circle2:?}");
+    let mut o2 = None;
+    println!("value: {o2:?}");
+    add_to(10, &mut o2);
+    println!("value: {o2:?}");
 }
