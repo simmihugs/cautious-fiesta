@@ -7,5 +7,7 @@ fn main() {
     let config_max2: Option<i32> = None;
     if let Some(max) = config_max2 {
         println!("The maximum is configured to be {max}");
+    } else {
+        println!("Not defined: {config_max2:?}");
     }
 }
