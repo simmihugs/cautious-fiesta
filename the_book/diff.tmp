@@ -1,0 +1,111 @@
+diff --git a/kuchen/src/garden/mod.rs b/kuchen/src/garden/mod.rs
+deleted file mode 100644
+index d301725..0000000
+--- a/kuchen/src/garden/mod.rs
++++ /dev/null
+@@ -1,2 +0,0 @@
+-pub mod vegetables;
+-pub mod wiese;
+diff --git a/kuchen/src/garden/vegetables/asparagus.rs b/kuchen/src/garden/vegetables/asparagus.rs
+deleted file mode 100644
+index aa8afe1..0000000
+--- a/kuchen/src/garden/vegetables/asparagus.rs
++++ /dev/null
+@@ -1,3 +0,0 @@
+-pub fn green() {
+-    println!("{}, cool", 42);
+-}
+diff --git a/kuchen/src/garden/vegetables/mod.rs b/kuchen/src/garden/vegetables/mod.rs
+deleted file mode 100644
+index c8596eb..0000000
+--- a/kuchen/src/garden/vegetables/mod.rs
++++ /dev/null
+@@ -1 +0,0 @@
+-pub mod asparagus;
+\ No newline at end of file
+diff --git a/kuchen/src/garden/wiese.rs b/kuchen/src/garden/wiese.rs
+deleted file mode 100644
+index f4e7c4d..0000000
+--- a/kuchen/src/garden/wiese.rs
++++ /dev/null
+@@ -1,7 +0,0 @@
+-pub fn giesen() {
+-    println!("{}", "Blub Blub Blub");
+-}
+-
+-fn haus() -> i32 {
+-    42
+-}
+diff --git a/kuchen/src/lib.rs b/kuchen/src/lib.rs
+index 90364e0..f0bb004 100644
+--- a/kuchen/src/lib.rs
++++ b/kuchen/src/lib.rs
+@@ -1,16 +1,39 @@
+-pub mod garden;
++#[allow(dead_code)]
++mod front_of_house {
++    pub mod hosting {
++        pub fn add_to_waitlist() {
++            println!("Wait..");
++        }
+ 
+-pub fn add(left: u64, right: u64) -> u64 {
+-    left + right
+-}
++        fn seat_at_table() {}
++    }
++
++    pub mod serving {
++        pub fn take_order() {
++            super::hosting::add_to_waitlist();
++        }
+ 
+-#[cfg(test)]
+-mod tests {
+-    use super::*;
++        fn serve_order() {}
+ 
+-    #[test]
+-    fn it_works() {
+-        let result = add(2, 2);
+-        assert_eq!(result, 4);
++        fn take_payment() {}
+     }
+ }
++
++pub fn eat_at_restaurant() {
++    crate::front_of_house::hosting::add_to_waitlist();
++}
++
++pub fn eat2() {
++    front_of_house::serving::take_order();
++}
++
++// #[cfg(test)]
++// mod tests {
++//     use super::*;
++
++//     #[test]
++//     fn it_works() {
++//         let result = add(2, 2);
++//         assert_eq!(result, 4);
++//     }
++// }
+diff --git a/the_book/src/main.rs b/the_book/src/main.rs
+index f934f3c..a28597a 100644
+--- a/the_book/src/main.rs
++++ b/the_book/src/main.rs
+@@ -1,11 +1,6 @@
+ use kuchen;
+ 
+ fn main() {
+-    let x: u64 = 42;
+-    let y: u64 = 0;
+-    println!("Add {x} and {y} = {}", kuchen::add(x, y));
+-
+-    kuchen::garden::wiese::giesen();
+-
+-    let haus = kuchen::garden::wiese::haus();
++    kuchen::eat_at_restaurant();
++    kuchen::eat2();
+ }
