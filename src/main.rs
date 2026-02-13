@@ -17,6 +17,8 @@ enum Shape {
     },
 }
 
+use Shape::*;
+
 impl Shape {
     fn center(&self) -> &Point {
         match self {
@@ -40,5 +42,13 @@ fn main() {
 
     println!("circle: {circle:?}");
     println!("{}", circle.center().x);
-    println!("{}", square.center().x);
+
+    // causes panic!
+    //println!("{}", square.center().x);
+
+    let circle2 = Circle {
+        center: Point { x: 0.0, y: 0.0 },
+        radius: 13,
+    };
+    println!("{circle2:?}");
 }
