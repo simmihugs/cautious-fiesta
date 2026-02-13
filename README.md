@@ -51,4 +51,8 @@ enum public makes the entire enums parameters public as well.
 
 For functions use `use` to access the module defining a function to
 then use it like `module::function`, but for types rather use 
-`use path::module::Type` to then use it like `Type`.
+`use path::module::Type` to then use it like `Type`. Exception to 
+this rule are types with the same name, where we either again import
+the module in order to then `module1::Type` and `module2::Type`. 
+Alternatively we could do `use path::module1::Type as module1Type` 
+and then use `module1Type` as type in order to avoid conflicts.
