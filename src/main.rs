@@ -1,18 +1,11 @@
-fn add_to(value: i32, o: &mut Option<i32>) {
-    match o {
-        None => (),
-        Some(v) => *o = Some(*v + value),
-    }
-}
-
 fn main() {
-    let mut o = Some(32);
-    println!("value: {o:?}");
-    add_to(10, &mut o);
-    println!("value: {o:?}");
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {max}");
+    }
 
-    let mut o2 = None;
-    println!("value: {o2:?}");
-    add_to(10, &mut o2);
-    println!("value: {o2:?}");
+    let config_max2: Option<i32> = None;
+    if let Some(max) = config_max2 {
+        println!("The maximum is configured to be {max}");
+    }
 }
