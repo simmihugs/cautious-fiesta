@@ -56,3 +56,12 @@ this rule are types with the same name, where we either again import
 the module in order to then `module1::Type` and `module2::Type`. 
 Alternatively we could do `use path::module1::Type as module1Type` 
 and then use `module1Type` as type in order to avoid conflicts.
+
+### error handling
+either use `panic!` for unrecoverable errors like access to index of
+containers which do not exist i.e. `let vec = vec![1,2,3]; vec[99]` in
+order to fail early rather then have undefined behavior or error
+checks every where. In order to have a save way of dealing with
+potential errorneous behaviour provide defensive apis as an
+alternative, which do use `Option`s and or `Result` which enforce a
+handling via the type system.
