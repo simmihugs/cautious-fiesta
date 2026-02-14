@@ -1,5 +1,16 @@
-fn main() {
-    let vec = vec![1, 2, 3];
+use std::fs::File;
 
-    vec[99];
+fn open_file(file_name: &str) -> Result<File, std::io::Error> {
+    let res = File::open(file_name)?;
+
+    Ok(res)
+}
+
+fn main() {
+    let file_result = open_file("hello.txt");
+
+    match file_result {
+        Err(e) => println!("{e:?}"),
+        Ok(_) => println!("it worked!"),
+    }
 }
