@@ -1,5 +1,5 @@
 use std::{
-    fs::File,
+    fs::{self, File},
     io::{self, Read},
 };
 
@@ -10,10 +10,18 @@ fn read_user_name_from_file(file_path: &str) -> Result<String, io::Error> {
     Ok(text)
 }
 
+fn read_user_name_from_file_easy(file_path: &str) -> Result<String, io::Error> {
+    fs::read_to_string(file_path)
+}
+
 fn main() {
     let file_path = String::from("hello.txt");
 
     let _res = read_user_name_from_file(&file_path).unwrap_or_else(|error| {
+        println!("{error:?}");
+        String::new()
+    });
+    let _res = read_user_name_from_file_easy(&file_path).unwrap_or_else(|error| {
         println!("{error:?}");
         String::new()
     });
