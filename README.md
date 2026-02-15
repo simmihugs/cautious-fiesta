@@ -119,3 +119,14 @@ where
     t.hello();
 }
 ```
+
+Finally, traits on return types
+```rust
+fn create_article() -> impl Summary + Hello {
+    Article {
+        text: "hello".to_string(),
+    }
+}
+```
+
+are a thing as well.
