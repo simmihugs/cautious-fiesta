@@ -20,3 +20,11 @@ fn access_it() {
     let vec: Vec<i32> = (1..10).collect();
     vec[100];
 }
+
+#[test]
+//#[should_panic(expected = "Paremter between 0 and 10")]
+#[should_panic(expected = "index out of bounds")]
+fn access_it_twice() {
+    let vec: Vec<i32> = (1..10).collect();
+    vec[100];
+}

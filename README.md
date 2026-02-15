@@ -201,3 +201,19 @@ parameter --> compiletime error
 
 The `static'` lifetime is special as it indicates that the variable
 lives for the entire life of the program. 
+
+## Testing
+
+Running test via cargo test from within `tests`
+```shell
+cargo test
+```
+
+### tests
+
+Define test via `#[test]` in test files.
+
+### should_panic
+
+Use `#[should_panic]` for functions in which we expect a `panic!`.
+
