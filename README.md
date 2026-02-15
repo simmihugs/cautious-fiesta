@@ -270,3 +270,16 @@ i.e. `cargo test -- --ignored`
 unit tests are small and test the module in isolation; Integration
 test approach like a user of the code/library and execute perhabs
 multiple modules.
+
+Unit test are inside the file they test using a module `mod tests`
+which is conveniently not part of the resulting
+library/executable. Also unit test can access everything as they are
+within the module whereas intergration test only ever see the public
+parts!
+
+### test specific integration test via filename
+In order to test `tests/test_haus.rs` while ignoring test `open_it` we use
+```shell
+╭[simmi@simmi-ThinkPad-T440s] ~/Projects/rustbook/the_book 
+╰─> cargo test --test test_haus -- --skip open_it
+```
