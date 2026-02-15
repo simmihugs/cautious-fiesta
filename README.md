@@ -217,3 +217,8 @@ Define test via `#[test]` in test files.
 
 Use `#[should_panic]` for functions in which we expect a `panic!`.
 
+### tests which return results
+
+Tests can also be written by return a result which is okay <--> test
+succeeds or error <--> test fails.
+
