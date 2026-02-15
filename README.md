@@ -222,3 +222,34 @@ Use `#[should_panic]` for functions in which we expect a `panic!`.
 Tests can also be written by return a result which is okay <--> test
 succeeds or error <--> test fails.
 
+### commandline options
+
+```shell
+cargo test -- --help
+```
+reveals how to run, specific tests, ignore spefic tests, list all test and how to test 
+in specific ways.
+
+
+```shell
+cargo test -- --skip open_it
+```
+
+for instances skips the test open_it.
+
+```shell
+cargo test -- --list
+```
+
+lists all tests.
+
+### test suite 
+
+the tests are standard wise run in parallel, which might cause issues,
+the standard shortcut is
+
+```shell
+cargo test -- --test-threads=1
+```
+to enforce that no parallel execution happens. E.g. tests might create 
+log files and doing that in parallel might cause issues.
