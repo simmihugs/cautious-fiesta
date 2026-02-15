@@ -11,5 +11,12 @@ fn test_add() {
 fn test_yell() {
     let opt = ", world!";
     let into = haus::yell();
-    assert_eq!(into, opt, "`{into}` != `{opt}`");
+    assert_ne!(into, opt, "`{into}` != `{opt}`");
+}
+
+#[test]
+#[should_panic]
+fn access_it() {
+    let vec: Vec<i32> = (1..10).collect();
+    vec[100];
 }
