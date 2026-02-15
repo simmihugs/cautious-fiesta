@@ -28,3 +28,10 @@ fn access_it_twice() {
     let vec: Vec<i32> = (1..10).collect();
     vec[100];
 }
+
+#[test]
+fn open_it() -> Result<(), std::io::Error> {
+    std::fs::File::open("hello.txt")?;
+
+    Ok(())
+}
