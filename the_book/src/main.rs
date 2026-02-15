@@ -21,6 +21,11 @@ fn summarize_it_further(t: &(impl Summary + Hello)) {
     t.hello();
 }
 
+fn summarize_it_further_<T: Summary + Hello>(t: &T) {
+    println!("{}", t.summarize());
+    t.hello();
+}
+
 #[allow(dead_code)]
 impl Article {
     fn new() -> Self {
@@ -54,4 +59,5 @@ fn main() {
 
     summarize_it(&article);
     summarize_it_further(&article);
+    summarize_it_further_(&article);
 }
