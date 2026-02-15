@@ -138,3 +138,17 @@ i.e. if type A implements a trait B, we can say either type A also
 implements trait C, or a generic implementer of type B is also
 implementing trait c, so that now type A can effectively use both
 traits functionlalities.
+
+#### lifetimes
+
+Lifetimes are basically the scope behavior, a variable starts its live
+when it is initiallized and ends at the end of the scoe when its
+dropped, or when it is explicitly dropped. What lifetime specifier do
+is not to change the lifetime of a specific variable, but rather give
+the compiler a rule how the lifetimes have to be in order for
+variables to be legal in their behavior. e.g. if we return something
+which is a reference, based on the input paramenters, the life time of
+the input parameter must be larger or equal then the return value as
+it is a reference to it. Similarly if we have multiple parameters and
+it depends on some factor which of inputs is reference by the output/s
+the largest life time has to be choosen.
