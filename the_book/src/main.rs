@@ -23,6 +23,12 @@ struct Student<'a> {
     age: u32,
 }
 
+impl<'a> Student<'a> {
+    fn new(name: &'a str) -> Self {
+        Self { name: name, age: 0 }
+    }
+}
+
 fn create_student<'a>(name: &'a str) -> Student<'a> {
     let steve = Student {
         name: name,
@@ -52,4 +58,6 @@ fn main() {
         c = b(str1, str2.as_str());
     }
     println!("{c}");
+
+    println!("{:?}", Student::new("Hello"));
 }

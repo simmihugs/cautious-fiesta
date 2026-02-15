@@ -184,3 +184,15 @@ fn first_word<'a>(s: &'a str) -> &'a str {
     &s[..]
 }
 ```
+
+basically there are three rules the compiler automatically applies.
+1. each parameter gets its own lifetime `'a 'b 'c` etc.
+2. if there is only on parameter each output parameter gets their
+   lifetime i.e. `'a`
+3. if there is a self in input parameters, each output parameter gets
+   the self's lifetime
+
+that means if there is one input each output just gets it lifetime and
+everyting is nice and cosy. However, if there are two the compiler
+does not know which parameters lifetime is the lifetime of the output
+parameter --> compiletime error
