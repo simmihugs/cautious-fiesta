@@ -29,6 +29,12 @@ where
     t.hello();
 }
 
+fn create_article() -> impl Summary + Hello {
+    Article {
+        text: "hello".to_string(),
+    }
+}
+
 #[allow(dead_code)]
 impl Article {
     fn new() -> Self {
@@ -63,4 +69,6 @@ fn main() {
     summarize_it(&article);
     summarize_it_further(&article);
     summarize_it_further_(&article);
+
+    summarize_it_further_(&create_article());
 }
