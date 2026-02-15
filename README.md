@@ -253,3 +253,15 @@ cargo test -- --test-threads=1
 ```
 to enforce that no parallel execution happens. E.g. tests might create 
 log files and doing that in parallel might cause issues.
+
+### function output
+successfull tests capture function output, so if the function does e.g. print
+to stdout, nothing is visible in test output because the test was successful.
+failed test do show the output. In order to generally show the output,
+use `cargo test -- --show-output`.
+
+### ignore tests
+
+`#[ignore]` is a flag we can give to tests. running `cargo test` will still run
+them. but specifing to ignore them will ignore them then i.e. `cargo test -- --ignore`
+
