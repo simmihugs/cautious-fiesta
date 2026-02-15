@@ -2,7 +2,7 @@ trait Summary {
     fn summarize(&self) -> String;
 }
 
-fn write_out_summaries(t: &dyn Summary) {
+fn write_out_summaries<T: Summary>(t: &T) {
     println!("{:?}", t.summarize());
 }
 
