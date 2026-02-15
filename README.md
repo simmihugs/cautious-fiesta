@@ -132,3 +132,9 @@ fn create_article() -> impl Summary + Hello {
 are a thing as well. However despite that multiple types might
 fullfill the requirement, a function returing something which is true
 to the trait still can only return 1 type!
+
+Traits can also be implemented based on former trait implementaions
+i.e. if type A implements a trait B, we can say either type A also
+implements trait C, or a generic implementer of type B is also
+implementing trait c, so that now type A can effectively use both
+traits functionlalities.
