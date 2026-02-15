@@ -72,3 +72,23 @@ Rust uses monomorphization on generics at compile time <--> generic
 code gets compiled into specific versions e.g. `Option<T>` into
 `Option<i32>` and `Option<f64>`. 
 
+#### traits
+
+```rust
+trait Summarize {
+	fn summarize(&self) -> String;
+}
+
+struct Article {...}
+
+impl Summarize for Article {...}
+
+fn summarize_it(text: &impl Summarize) {...}
+//vs.
+fn summarize_it<T: Summarize>(text: &T) {...}
+```
+
+here the two ways to ensure the type does implement the trait are
+still different. The `<>` way is more concise, but diencourages for
+everyday code I gues because it is noisier, but it would allow to
+explicitly define the specific type.
