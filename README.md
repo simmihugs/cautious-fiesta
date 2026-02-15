@@ -263,5 +263,5 @@ use `cargo test -- --show-output`.
 ### ignore tests
 
 `#[ignore]` is a flag we can give to tests. running `cargo test` will still run
-them. but specifing to ignore them will ignore them then i.e. `cargo test -- --ignore`
+them. but specifing to ignore them will ignore them then i.e. `cargo test -- --ignored`
 
