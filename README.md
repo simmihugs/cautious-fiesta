@@ -196,3 +196,8 @@ that means if there is one input each output just gets it lifetime and
 everyting is nice and cosy. However, if there are two the compiler
 does not know which parameters lifetime is the lifetime of the output
 parameter --> compiletime error
+
+#### static'
+
+The `static'` lifetime is special as it indicates that the variable
+lives for the entire life of the program. 
