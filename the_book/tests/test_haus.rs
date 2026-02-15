@@ -1,8 +1,11 @@
 use the_book;
 use the_book::lib::haus;
 
+mod utils;
+
 #[test]
 fn test_add() {
+    let _i = utils::adder(13, 13);
     let result = the_book::add(2, 2);
     assert_eq!(result, 4);
 }

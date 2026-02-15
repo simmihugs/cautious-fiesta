@@ -283,3 +283,7 @@ In order to test `tests/test_haus.rs` while ignoring test `open_it` we use
 ╭[simmi@simmi-ThinkPad-T440s] ~/Projects/rustbook/the_book 
 ╰─> cargo test --test test_haus -- --skip open_it
 ```
+
+### common test code
+If there is code we need/want in our test functions, we could use a
+file to keep this shared code in the test suite.
