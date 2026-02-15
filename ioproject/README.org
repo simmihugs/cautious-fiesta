@@ -1,0 +1,7 @@
+#+TTILE: IO-Project from rust book
+* step1
+#+begin_src shell
+  cargo run -- searchstring example.txt
+#+end_src
+
+This way the tool can be used ultimatively.
