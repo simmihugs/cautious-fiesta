@@ -65,3 +65,6 @@ checks every where. In order to have a save way of dealing with
 potential errorneous behaviour provide defensive apis as an
 alternative, which do use `Option`s and or `Result` which enforce a
 handling via the type system.
+
+### generics
+
