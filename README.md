@@ -129,4 +129,6 @@ fn create_article() -> impl Summary + Hello {
 }
 ```
 
-are a thing as well.
+are a thing as well. However despite that multiple types might
+fullfill the requirement, a function returing something which is true
+to the trait still can only return 1 type!
