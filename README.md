@@ -227,8 +227,8 @@ succeeds or error <--> test fails.
 ```shell
 cargo test -- --help
 ```
-reveals how to run, specific tests, ignore spefic tests, list all test and how to test 
-in specific ways.
+reveals how to run, specific tests, ignore spefic tests, list all test
+and how to test in specific ways.
 
 
 ```shell
@@ -255,13 +255,18 @@ to enforce that no parallel execution happens. E.g. tests might create
 log files and doing that in parallel might cause issues.
 
 ### function output
-successfull tests capture function output, so if the function does e.g. print
-to stdout, nothing is visible in test output because the test was successful.
-failed test do show the output. In order to generally show the output,
-use `cargo test -- --show-output`.
+successfull tests capture function output, so if the function does
+e.g. print to stdout, nothing is visible in test output because the
+test was successful.  failed test do show the output. In order to
+generally show the output, use `cargo test -- --show-output`.
 
 ### ignore tests
 
-`#[ignore]` is a flag we can give to tests. running `cargo test` will still run
-them. but specifing to ignore them will ignore them then i.e. `cargo test -- --ignored`
+`#[ignore]` is a flag we can give to tests. running `cargo test` will
+still run them. but specifing to ignore them will ignore them then
+i.e. `cargo test -- --ignored`
 
+### unit tests vs. integration tests
+unit tests are small and test the module in isolation; Integration
+test approach like a user of the code/library and execute perhabs
+multiple modules.
