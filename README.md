@@ -152,3 +152,35 @@ the input parameter must be larger or equal then the return value as
 it is a reference to it. Similarly if we have multiple parameters and
 it depends on some factor which of inputs is reference by the output/s
 the largest life time has to be choosen.
+
+Lifetime elision, is when the compiler can predict the lifetimes for
+reference returns and the compiler does therefore not have to specify
+it. e.g.
+
+```rust
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+```
+does not need to be
+```rust
+fn first_word<'a>(s: &'a str) -> &'a str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+```
