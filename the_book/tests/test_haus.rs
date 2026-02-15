@@ -9,5 +9,7 @@ fn test_add() {
 
 #[test]
 fn test_yell() {
-    assert_eq!(haus::yell(), ", world!");
+    let opt = ", world!";
+    let into = haus::yell();
+    assert_eq!(into, opt, "`{into}` != `{opt}`");
 }
