@@ -68,3 +68,7 @@ handling via the type system.
 
 ### generics
 
+Rust uses monomorphization on generics at compile time <--> generic
+code gets compiled into specific versions e.g. `Option<T>` into
+`Option<i32>` and `Option<f64>`. 
+

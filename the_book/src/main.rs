@@ -1,22 +1,32 @@
-#[derive(Debug)]
-#[allow(dead_code)]
-struct Point<T, U> {
-    x: T,
-    y: U,
+trait Summary {
+    fn summarize(&self) -> String;
 }
 
-impl Point<f64, f64> {
-    fn wow(&self) -> Point<i32, i32> {
-        Point {
-            x: self.x.clone() as i32,
-            y: self.y.clone() as i32,
+struct Article {
+    text: String,
+}
+
+#[allow(dead_code)]
+impl Article {
+    fn new() -> Self {
+        Article {
+            text: String::new(),
+        }
+    }
+    fn from(text: &str) -> Self {
+        Article {
+            text: String::from(text),
         }
     }
 }
 
-fn main() {
-    let point: Point<i32, f64> = Point { x: 4, y: 5.4 };
-    println!("The point: {point:?}");
+impl Summary for Article {
+    fn summarize(&self) -> String {
+        self.text.to_lowercase()[..50].to_string() + "..."
+    }
+}
 
-    println!("point: {:?}", (Point { x: 4.5, y: 8.9 }).wow());
+fn main() {
+    let article = Article::from("Once upon a time there was a little shad. He was a bad bad bunny, and very insecure, which was a shame because he was a grifter as well.");
+    println!("article summary: {}", article.summarize());
 }
