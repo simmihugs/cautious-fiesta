@@ -105,3 +105,17 @@ fn func(t1: &impl Summarize, t2: &impl Summarize) {...}
 
 where the second only ensures we do imple `Summarize` but not if t1
 and t2 are different types.
+
+If a type has multiple traits it adheres to, using a + helps
+i.e. `&(impl Debug + Summarize)` or `<T: Debug + Summarize>` and if
+the traits are to many the option to write everything between function
+head and body using `where` exit i.e.
+```rust
+fn summarize_it_further_<T>(t: &T)
+where
+    T: Summary + Hello,
+{
+    println!("{}", t.summarize());
+    t.hello();
+}
+```

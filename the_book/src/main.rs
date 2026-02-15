@@ -21,7 +21,10 @@ fn summarize_it_further(t: &(impl Summary + Hello)) {
     t.hello();
 }
 
-fn summarize_it_further_<T: Summary + Hello>(t: &T) {
+fn summarize_it_further_<T>(t: &T)
+where
+    T: Summary + Hello,
+{
     println!("{}", t.summarize());
     t.hello();
 }
