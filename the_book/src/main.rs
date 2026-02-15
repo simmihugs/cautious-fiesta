@@ -2,12 +2,23 @@ trait Summary {
     fn summarize(&self) -> String;
 }
 
+trait Hello {
+    fn hello(&self) {
+        println!("hello")
+    }
+}
+
 struct Article {
     text: String,
 }
 
 fn summarize_it(t: &impl Summary) {
     println!("{}", t.summarize());
+}
+
+fn summarize_it_further(t: &(impl Summary + Hello)) {
+    println!("{}", t.summarize());
+    t.hello();
 }
 
 #[allow(dead_code)]
@@ -24,6 +35,9 @@ impl Article {
     }
 }
 
+#[allow(dead_code)]
+impl Hello for Article {}
+
 impl Summary for Article {
     fn summarize(&self) -> String {
         let tmp = self.text.to_lowercase();
@@ -39,4 +53,5 @@ fn main() {
     let article = Article::from("Once upon a time there was a little shad. He was a bad bad bunny, and very insecure, which was a shame because he was a grifter as well.");
 
     summarize_it(&article);
+    summarize_it_further(&article);
 }

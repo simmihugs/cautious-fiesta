@@ -91,4 +91,17 @@ fn summarize_it<T: Summarize>(text: &T) {...}
 here the two ways to ensure the type does implement the trait are
 still different. The `<>` way is more concise, but diencourages for
 everyday code I gues because it is noisier, but it would allow to
-explicitly define the specific type.
+explicitly define the specific type. the Trait bound (`<>`) has the
+advantage to allow us to define that both types are the same if a
+function usese multiple parameters. e.g.
+
+```rust
+fn func<T: Summarize>(t1: &T, t2: &T) {...}
+
+//vs
+
+fn func(t1: &impl Summarize, t2: &impl Summarize) {...}
+```
+
+where the second only ensures we do imple `Summarize` but not if t1
+and t2 are different types.
