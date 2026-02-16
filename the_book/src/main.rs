@@ -10,7 +10,7 @@ fn france(s: &str) {
 
 fn main() {
     let vec: Vec<i32> = (0..10).collect();
-    println!("vector: {vec:?}");
+    println!("vector: {vec:#?}");
 
     thread::spawn(move || println!("vector: {vec:?}"))
         .join()
