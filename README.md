@@ -287,3 +287,28 @@ In order to test `tests/test_haus.rs` while ignoring test `open_it` we use
 ### common test code
 If there is code we need/want in our test functions, we could use a
 file to keep this shared code in the test suite.
+
+## Closures
+
+Closures can capture from their surrounding.
+
+```rust
+    fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
+        user_preference.unwrap_or_else(|| self.most_stocked())
+    }
+```
+
+here the closure captures `self`, to use it for `self.most_stocked()`. 
+
+### type annotations
+
+```rust
+    let example_closure = |x| x;
+
+    let s = example_closure(String::from("hello"));
+    let n = example_closure(5);
+```
+
+closures do not need type annotations, they infere the type. however,
+a closure is not generic, the first usage determines its type and
+further usages are then invalid if the type are broken.
