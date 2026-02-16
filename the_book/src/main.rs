@@ -1,38 +1,10 @@
-use std::thread;
-
-fn haus() {
-    println!("hello");
-}
-
-fn france(s: &str) {
-    println!("{s:?}");
-}
-
-fn main() {
-    let vec: Vec<i32> = (0..10).collect();
-    println!("vector: {vec:#?}");
-
-    thread::spawn(move || println!("vector: {vec:?}"))
-        .join()
-        .unwrap();
-
-    //println!("vector: {vec:?}");
-
-    thread::spawn(haus).join().unwrap();
-
-    let s = String::from("i");
-    thread::spawn(move || france(&s)).join().unwrap();
-
-    main2();
-}
-
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
 }
 
-fn main2() {
+fn main() {
     let mut list = [
         Rectangle {
             width: 10,
@@ -48,6 +20,15 @@ fn main2() {
         },
     ];
 
-    list.sort_by_key(|r| (r.width % 10).to_string().len());
+    let mut num_sort_operations = 0;
+    //let mut sort_operations = vec![];
+    let value = String::from("closure called");
+
+    list.sort_by_key(|r| {
+        //sort_operations.push(value.clone());
+        num_sort_operations += 1;
+        r.width
+    });
     println!("{list:#?}");
+    println!("num_sort_operations: {num_sort_operations}");
 }
