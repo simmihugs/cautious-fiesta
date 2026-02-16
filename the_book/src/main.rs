@@ -8,24 +8,14 @@ impl Iterator for Silly {
     type Item = i32;
 
     fn next(&mut self) -> Option<Self::Item> {
-        match self.a {
-            Some(v) => {
-                self.a = None;
-                Some(v)
-            }
-            None => match self.b {
-                Some(v) => {
-                    self.b = None;
-                    Some(v)
-                }
-                None => match self.c {
-                    Some(v) => {
-                        self.c = None;
-                        Some(v)
-                    }
-                    None => None,
-                },
-            },
+        if let Some(v) = self.a.take() {
+            Some(v)
+        } else if let Some(v) = self.b.take() {
+            Some(v)
+        } else if let Some(v) = self.c.take() {
+            Some(v)
+        } else {
+            None
         }
     }
 }
