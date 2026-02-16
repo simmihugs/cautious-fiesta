@@ -1,32 +1,53 @@
-static CLOSURE: fn(i32) -> i32 = |x| x + 2;
+use std::thread;
 
-fn main() {
-    println!("{}", CLOSURE(42));
-
-    let list = vec![1, 2, 3];
-    println!("Before defining closure: {list:?}");
-
-    let only_borrows = || println!("From closure: {list:?}");
-
-    println!("Before calling closure: {list:?}");
-    only_borrows();
-    println!("After calling closure: {list:?}");
-
-    let mut list = vec![];
-    println!("{list:?}");
-    let mut hurra = || list.push(42);
-    for _ in 0..10 {
-        hurra();
-    }
-    println!("{list:?}");
+fn haus() {
+    println!("hello");
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+fn france(s: &str) {
+    println!("{s:?}");
+}
 
-    #[test]
-    fn test1() {
-        assert_eq!(42, CLOSURE(40));
-    }
+fn main() {
+    let vec: Vec<i32> = (0..10).collect();
+    println!("vector: {vec:?}");
+
+    thread::spawn(move || println!("vector: {vec:?}"))
+        .join()
+        .unwrap();
+
+    //println!("vector: {vec:?}");
+
+    thread::spawn(haus).join().unwrap();
+
+    let s = String::from("i");
+    thread::spawn(move || france(&s)).join().unwrap();
+
+    main2();
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn main2() {
+    let mut list = [
+        Rectangle {
+            width: 10,
+            height: 1,
+        },
+        Rectangle {
+            width: 3,
+            height: 5,
+        },
+        Rectangle {
+            width: 7,
+            height: 12,
+        },
+    ];
+
+    list.sort_by_key(|r| (r.width % 10).to_string().len());
+    println!("{list:#?}");
 }
