@@ -1,10 +1,7 @@
-fn add(x: u32, y: u32) -> u32 {
-    x + y
-}
+static CLOSURE: fn(i32) -> i32 = |x| x + 2;
 
 fn main() {
-    let res = add(40, 2);
-    println!("{res}");
+    println!("{}", CLOSURE(42));
 }
 
 #[cfg(test)]
@@ -12,8 +9,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn kuchen() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn test1() {
+        assert_eq!(42, CLOSURE(40));
     }
 }
