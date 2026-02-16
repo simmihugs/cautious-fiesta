@@ -4,19 +4,32 @@ struct Silly {
     c: Option<i32>,
 }
 
-impl Iterator for Silly {
-    type Item = i32;
+struct SillyIter<'a> {
+    silly: &'a Silly,
+    state: usize,
+}
+
+impl Silly {
+    fn iter(&self) -> SillyIter<'_> {
+        SillyIter {
+            silly: self,
+            state: 0,
+        }
+    }
+}
+
+impl<'a> Iterator for SillyIter<'a> {
+    type Item = &'a i32;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if let Some(v) = self.a.take() {
-            Some(v)
-        } else if let Some(v) = self.b.take() {
-            Some(v)
-        } else if let Some(v) = self.c.take() {
-            Some(v)
-        } else {
-            None
-        }
+        let result = match self.state {
+            0 => self.silly.a.as_ref(),
+            1 => self.silly.b.as_ref(),
+            2 => self.silly.c.as_ref(),
+            _ => None,
+        };
+        self.state += 1;
+        result
     }
 }
 
@@ -27,10 +40,10 @@ fn main() {
         c: Some(42),
     };
 
-    // silly.iter().for_each(|x| {
-    //     println!("{x:?}");
-    // })
-    for i in silly {
-        println!("{i}");
-    }
+    silly.iter().for_each(|x| {
+        println!("{x:?}");
+    });
+    // for i in silly {
+    //     println!("{i}");
+    // }
 }
