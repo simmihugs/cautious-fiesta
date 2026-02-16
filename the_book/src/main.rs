@@ -1,34 +1,46 @@
-#[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Silly {
+    a: Option<i32>,
+    b: Option<i32>,
+    c: Option<i32>,
+}
+
+impl Iterator for Silly {
+    type Item = i32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self.a {
+            Some(v) => {
+                self.a = None;
+                Some(v)
+            }
+            None => match self.b {
+                Some(v) => {
+                    self.b = None;
+                    Some(v)
+                }
+                None => match self.c {
+                    Some(v) => {
+                        self.c = None;
+                        Some(v)
+                    }
+                    None => None,
+                },
+            },
+        }
+    }
 }
 
 fn main() {
-    let mut list = [
-        Rectangle {
-            width: 10,
-            height: 1,
-        },
-        Rectangle {
-            width: 3,
-            height: 5,
-        },
-        Rectangle {
-            width: 7,
-            height: 12,
-        },
-    ];
+    let silly = Silly {
+        a: Some(42),
+        b: Some(42),
+        c: Some(42),
+    };
 
-    let mut num_sort_operations = 0;
-    //let mut sort_operations = vec![];
-    let value = String::from("closure called");
-
-    list.sort_by_key(|r| {
-        //sort_operations.push(value.clone());
-        num_sort_operations += 1;
-        r.width
-    });
-    println!("{list:#?}");
-    println!("num_sort_operations: {num_sort_operations}");
+    // silly.iter().for_each(|x| {
+    //     println!("{x:?}");
+    // })
+    for i in silly {
+        println!("{i}");
+    }
 }
