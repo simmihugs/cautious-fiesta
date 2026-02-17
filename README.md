@@ -369,3 +369,9 @@ This trait allows to define the behavior of the derefenece operator
 ### Drop
 
 This trait decides what happens when a value gets out of scope.
+
+### Rc
+
+`Rc<T>` is the Refrence-counted smart pointer i.e. if multiple
+resources need to be able to own a value. Importingly, `Rc` is for use
+in single threaded scenarios only! Also `Rc` is for read only.
