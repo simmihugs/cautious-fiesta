@@ -364,4 +364,4 @@ works.
 ### Deref
 
 This trait allows to define the behavior of the derefenece operator
-*. That allows smartpointers to be treated as References.
+*. That allows smartpointers to be treated as References. 
