@@ -375,3 +375,7 @@ This trait decides what happens when a value gets out of scope.
 `Rc<T>` is the Refrence-counted smart pointer i.e. if multiple
 resources need to be able to own a value. Importingly, `Rc` is for use
 in single threaded scenarios only! Also `Rc` is for read only.
+
+### RefCell<T>
+
+Interior mutability is a design pattern in Rust that allows you to mutate data even when there are immutable references to that data.
