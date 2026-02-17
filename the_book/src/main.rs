@@ -14,5 +14,10 @@ fn main() {
         let _haus = Haus { a: 42 };
     }
     let haus = Haus { a: 42 };
+    haus.drop();
     drop(haus);
+
+    type Word = String;
+
+    let word: Word = String::from("Word!");
 }

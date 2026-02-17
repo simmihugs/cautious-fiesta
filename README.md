@@ -365,3 +365,7 @@ works.
 
 This trait allows to define the behavior of the derefenece operator
 *. That allows smartpointers to be treated as References. 
+
+### Drop
+
+This trait decides what happens when a value gets out of scope.
