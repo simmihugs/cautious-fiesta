@@ -1,25 +1,23 @@
-fn main() {
-    let mut vec: Vec<i32> = (0..10).collect();
-    for i in &mut vec {
-        *i = 42;
-    }
-    println!("{vec:#?}");
+use std::env;
 
-    println!("{}", vec.iter().sum::<i32>());
+fn build(mut args: impl Iterator<Item = String>) -> Result<(), &'static str> {
+    args.next();
+    let a = match args.next() {
+        Some(arg) => arg,
+        None => return Err("No search string"),
+    };
+    let b = match args.next() {
+        Some(arg) => arg,
+        None => return Err("No file"),
+    };
 
-    println!("{vec:#?}");
+    println!("searchstring: {a}\tfile: {b}");
 
-    let vec: Vec<i32> = (0..10).collect();
-    println!(
-        "{:#?}",
-        vec.iter().filter(|x| **x % 2 == 0).collect::<Vec<&i32>>()
-    );
+    Ok(())
+}
 
-    let vec: Vec<i32> = vec
-        .iter()
-        .filter(|x| **x % 2 == 0)
-        .map(|&x| x)
-        .collect::<Vec<i32>>();
+fn main() -> Result<(), &'static str> {
+    build(env::args())?;
 
-    println!("{:#?}", vec);
+    Ok(())
 }
