@@ -1,15 +1,43 @@
+use std::ops::{Deref, DerefMut};
+
 #[derive(Debug)]
-#[allow(dead_code)]
-enum List {
-    Cons(i32, Box<List>),
-    Nil,
+struct MyBox<T>(T);
+
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
 }
 
-use List::*;
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl<T> DerefMut for MyBox<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+
+fn hello(name: &str) {
+    println!("Hello, {name}!");
+}
 
 fn main() {
-    let start = Nil;
-    let next = Cons(1, Box::new(start));
-    let next_next = Cons(2, Box::new(next));
-    println!("{next_next:?}");
+    let x = 42;
+    let mut my_box = MyBox::new(x);
+    println!("{my_box:?}");
+    *my_box = 0;
+    println!("{my_box:?}");
+    *my_box = 42;
+    println!("{my_box:?}");
+    assert_eq!(42, x);
+    assert_eq!(42, *my_box);
+
+    let name = MyBox::new("Stefan");
+    hello(&name);
 }
