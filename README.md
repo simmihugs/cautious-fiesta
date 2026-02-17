@@ -312,3 +312,26 @@ here the closure captures `self`, to use it for `self.most_stocked()`.
 closures do not need type annotations, they infere the type. however,
 a closure is not generic, the first usage determines its type and
 further usages are then invalid if the type are broken.
+
+### iterators
+
+use `iter()` to basically create a iterator, which refrences the
+original to basically read from it. Use `into_iter()` to take over the
+iterators origin and own it.
+
+```rust 
+let vec = vec![1, 2, 3, 4];
+let even_vec: Vec<i32> = vec.iter()
+    .filter(|x| **x % 2 == 0)
+    .map(|&x| x)
+    .collect();
+
+println!("{:?}", vec);      // [1, 2, 3, 4] - Still exists!
+println!("{:?}", even_vec); // [2, 4]
+
+//better
+let vec: Vec<i32> = vec
+    .into_iter() // Consume the original
+    .filter(|x| x % 2 == 0) // x is now just i32
+    .collect();
+```
