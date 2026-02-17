@@ -1,8 +1,15 @@
-fn main() {
-    let mut x: Box<i32> = Box::new(5);
-    assert_eq!(*x, 5);
-    *x += 42;
-    assert_eq!(*x, 47);
+#[derive(Debug)]
+#[allow(dead_code)]
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
 
-    println!("x = {x}");
+use List::*;
+
+fn main() {
+    let start = Nil;
+    let next = Cons(1, Box::new(start));
+    let next_next = Cons(2, Box::new(next));
+    println!("{next_next:?}");
 }
