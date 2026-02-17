@@ -335,3 +335,28 @@ let vec: Vec<i32> = vec
     .filter(|x| x % 2 == 0) // x is now just i32
     .collect();
 ```
+
+### Smartpointers
+
+`Vec<T>` and `String` are smartpointers despite the fact we usually dont
+call them that.
+
+1. They wrap a raw pointer to the heap
+2. They implement `Defer` so we can use them in `&str` or `&[TYPE]`
+   scenarios.
+3. They implement `Drop` so when the `String` gets out of scope, its
+   data also gets cleaned up.
+   
+Where are the differences?
+
+Smartpointers are for specifig individual values AND they have a
+`Defer` so that we can directly use the inner thing like the actual value.
+
+```rust
+let mut x: Box<i32> = Box::new(5);
+assert_eq!(*x, 5);
+*x += 42;
+assert_eq!(*x, 47);
+```
+
+works.

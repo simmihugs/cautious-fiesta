@@ -1,23 +1,8 @@
-use std::env;
+fn main() {
+    let mut x: Box<i32> = Box::new(5);
+    assert_eq!(*x, 5);
+    *x += 42;
+    assert_eq!(*x, 47);
 
-fn build(mut args: impl Iterator<Item = String>) -> Result<(), &'static str> {
-    args.next();
-    let a = match args.next() {
-        Some(arg) => arg,
-        None => return Err("No search string"),
-    };
-    let b = match args.next() {
-        Some(arg) => arg,
-        None => return Err("No file"),
-    };
-
-    println!("searchstring: {a}\tfile: {b}");
-
-    Ok(())
-}
-
-fn main() -> Result<(), &'static str> {
-    build(env::args())?;
-
-    Ok(())
+    println!("x = {x}");
 }
